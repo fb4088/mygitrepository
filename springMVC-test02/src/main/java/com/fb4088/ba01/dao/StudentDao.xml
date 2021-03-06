@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fb4088.ba01.dao.StudentDao">
+	<insert id="insertStudent">
+		insert into ssm02_student(snum,name,age,sex,classroom,phone,address) values(#{snum},#{name},#{age},#{sex},#{classroom},#{phone},#{address})
+	</insert>
+	<select id="selectAll" resultType="student">
+		select * from ssm02_student
+	</select>
+	<delete id="deleteStuBySnum">
+		delete from ssm02_student where snum in
+		<foreach collection="array" item="snum" open="(" close=")" separator=",">
+			#{snum}
+		</foreach>
+	</delete>
+	<update id="updataStu">
+		update ssm02_student set snum=#{snum},name=#{name},age=#{age},sex=#{sex},classroom=#{classroom},phone=#{phone},address=#{address} where id=#{id} 
+	</update>
+	<select id="selectByClassroom" resultType="student">
+		select * from ssm02_student where classroom=#{classroom}
+	</select>
+	<select id="selectBySex" resultType="student">
+		select * from ssm02_student where sex=#{sex}
+	</select>
+	<select id="selectByAge" resultType="student">
+		select * from ssm02_student where age=#{age}
+	</select>
+	<select id="selectByName" resultType="student">
+		select * from ssm02_student where name=#{name}
+	</select>
+	<select id="selectByPhone" resultType="student">
+		select * from ssm02_student where phone=#{phone}
+	</select>
+	<select id="selectBySnum" resultType="student">
+		select * from ssm02_student where snum=#{snum}
+	</select>
+</mapper>
